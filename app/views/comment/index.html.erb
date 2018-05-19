@@ -18,7 +18,7 @@
               <% end %>
             <% end %>
           <% end %> | 
-        on <%= item.created_at %> 
+        on <%= item.created_at.in_time_zone("Melbourne") %> | On: 
        <%  parent = Item.select(:id).where(:id => item.news_id).pluck(:content).to_s %>
        <%  parent = parent.delete "[\"" %>
        <%  parent = parent.delete "\"]" %>

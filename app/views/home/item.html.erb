@@ -8,6 +8,8 @@ NEWS ID: <%= @id %><br
   <a href=<%= news.source %>>
     (=<%= news.source %>)
   </a>
+   <% count = Item.select(:id).where(:news_id => @id).count %>
+    <%= ('comments: ' + count.to_s ) %>
   
   <% end %>
 <% end %>
@@ -26,15 +28,13 @@ NEWS ID: <%= @id %><br
     </form>
     
     <table>
-
-    
       <!--<table>-->
-  <% if @items != nil %>
+  <%= ('comments: ' + @count.to_s ) %>
+  <% if @items != nil && @count != 0 %>
     <h1>Comments</h1>
     <% @items.each do |item| %>
       <% if item.item_type === "comment" && item.news_id.to_s === @id.to_s %>
         <div>
-          
           <p> by 
           <% if @users != nil %>
             <% @users.each do |user| %>
@@ -43,15 +43,16 @@ NEWS ID: <%= @id %><br
               <% end %>
             <% end %>
           <% end %>
-
           | <%= item.updated_at %>
           </p>
           <h4><%= item.content %></h4>
         </div>
+      <% end %>
     <% end %>
+  <% else %>
+    <h1>No Comments</h1>
   <% end %>
+  
   <!--</table>-->
-    
-<% end %>
-    
+
 </table>

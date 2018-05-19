@@ -6,7 +6,10 @@
     <% if item.item_type === "news" %>
     
     <div>
-      <h2><%= item.content %></h2>
+      <h2><%= item.content %><a href=<%= item.source %>>
+          (<%= item.source %>)
+      </a></h2>
+      
       <p> by 
           <% if @users != nil %>
             <% @users.each do |user| %>

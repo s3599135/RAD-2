@@ -28,6 +28,7 @@ class HomeController < ApplicationController
     @id = params['id']
     @news = News.all
     @comments = Comment.all
+    @count = Item.select(:id).where(:news_id => @id).count
     render('comment')
   end
   
@@ -37,6 +38,7 @@ class HomeController < ApplicationController
     @news = News.all
     @comments = Comment.all
     @items = Item.all
+    @count = Item.select(:id).where(:news_id => @id).count
     render('item')
   end
 
