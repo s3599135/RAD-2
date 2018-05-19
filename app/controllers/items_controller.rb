@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
             
             else
                 flash[:comment_errors] = ['New comment added']
-                redirect_to "/comments"
+                redirect_to "/newcomments"
             end
         else
             flash[:item_errors] = item.errors.full_messages

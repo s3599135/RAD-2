@@ -6,9 +6,9 @@
     <% if item.item_type === "news" %>
     
     <div>
-      <h2><%= item.content %><a href=<%= item.source %>>
-          (<%= item.source %>)
-      </a></h2>
+      <h3><%= item.content %>
+        (<a href=<%= item.source %>><%= item.source %></a>)
+      </h3>
       
       <p> by 
           <% if @users != nil %>

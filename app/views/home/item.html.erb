@@ -1,58 +1,52 @@
-NEWS ID: <%= @id %><br
-<!-- loop through news articles -->
-<% @items.each do |news|%>
-  <!-- Find the news post the user selected-->
-  <% if news.id.to_s === @id.to_s %>
-  <!-- Link to the story with the story's name -->
-  <a href=<%= news.source %> class="link"><%= news.content %></a>
-  <a href=<%= news.source %>>
-    (=<%= news.source %>)
-  </a>
-   <% count = Item.select(:id).where(:news_id => @id).count %>
-    <%= ('comments: ' + count.to_s ) %>
-  
-  <% end %>
-<% end %>
+<% content_for :title, @news.content %>
 
-    <form action="/items" method="POST">
-        <!-- po-->
-        <input type="hidden" name="item[news_id]" value="<%= @id %>">
-        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
-        <input type="hidden" name="item[item_type]" value="comment">
-        <input type="hidden" name="item[user_id]" value= "<%= session[:user_id] %>">
-        <textarea name="item[content]" rows="6" cols="60" placeholder="New Comment...."></textarea>
-        <br>
-        <br>
-        <input type="submit" name="submit" class="submit">
+<a href=<%= @news.source %> class="link"><%= @news.content %></a>
+<a href=<%= @news.source %>>
+  (=<%= @news.source %>)
+</a>
 
-    </form>
+<p> by 
+  <%= @user.username %>
+  on:  <%= @news.updated_at.in_time_zone("Melbourne") %> |  
+  <%= ( @count.to_s  + ' comments' ) %>
+</p>
+
+</br>
+<form action="/items" method="POST">
+    <!-- po-->
+    <input type="hidden" name="item[news_id]" value="<%= @id %>">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <input type="hidden" name="item[item_type]" value="comment">
+    <input type="hidden" name="item[user_id]" value= "<%= session[:user_id] %>">
+    <textarea name="item[content]" rows="6" cols="60" placeholder="New Comment...."></textarea>
+    <br>
+    <br>
+    <input type="submit" name="submit" class="submit" value="add comment">
+
+</form>
     
-    <table>
-      <!--<table>-->
-  <%= ('comments: ' + @count.to_s ) %>
-  <% if @items != nil && @count != 0 %>
+<table>
+  <% if @comments != nil && @count != 0 %>
     <h1>Comments</h1>
-    <% @items.each do |item| %>
-      <% if item.item_type === "comment" && item.news_id.to_s === @id.to_s %>
-        <div>
-          <p> by 
-          <% if @users != nil %>
-            <% @users.each do |user| %>
-              <% if(user.id.to_i == item.user_id.to_i)%>
-                <%= user.username%>
-              <% end %>
+    <% @comments.each do |comment| %>
+    <div>
+      <p> by 
+        <% if @users != nil %>
+          <% @users.each do |user| %>
+            <% if(user.id.to_i == comment.user_id.to_i)%>
+              <%= user.username%>
             <% end %>
           <% end %>
-          | <%= item.updated_at %>
-          </p>
-          <h4><%= item.content %></h4>
-        </div>
-      <% end %>
+        <% end %>
+      | <%= comment.updated_at.in_time_zone("Melbourne") %>
+      </p>
+      <h4><%= comment.content %></h4>
+    </div>
     <% end %>
   <% else %>
     <h1>No Comments</h1>
   <% end %>
-  
+    
   <!--</table>-->
 
 </table>

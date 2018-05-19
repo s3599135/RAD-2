@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   
   post '/comments' => 'comment#create'
   # get '/comments' => 'about#comment'
-  get '/comments' => 'comment#index'
+  get '/newcomments' => 'comment#index'
   
   # get 'submit'=>'news#index'
   get 'submit' => 'news#index'
@@ -103,13 +103,14 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v0 do
       resources :item
+      post 'item/create' => 'item#create'
     end
   end
-  namespace :api, defaults: {format: :json} do
-    namespace :v0 do
-      resources :test
-    end
-  end
+  # namespace :api, defaults: {format: :json} do
+  #   namespace :v0 do
+  #     resources :test
+  #   end
+  # end
 
 
   

@@ -1,7 +1,9 @@
 module Api
   module V0
     class ItemController < ApplicationController
+      protect_from_forgery with: :null_session
       def index 
+        
         @items = Item.order('created_at DESC')
         @id = params[:id]
         puts @id
@@ -14,19 +16,33 @@ module Api
       end
       
       # Add new item (news)
-      def update
-        # @by     = params[:username]
-        # @text   = params[:text]
-        # @type   = params[:type]
-        # @source = params[:'new source']
-        new = News.new(post_params)
-        if new.save
-          session[:new_id] = new.id
-          redirect_to '/'
-        else
-          flash[:new_errors] = new.errors.full_messages
-          redirect_to '/submit'
+      def create
+        @by     = params[:username]
+        @text   = params[:text]
+        @type   = params[:type]
+        @source = params[:'new source']
+        @boolean = 0
+        User.all.each do |user|
+          # puts("tes21213213t"+user[:username])
+          # puts("lol" +@by)
+          if ( user[:username] === @by)
+            @target = user[:id]
+            new = Item.new(user_id: @target, item_type: @type, content: @text, source: @source)
+            if new.save
+              @boolean = 1
+            end
+          end
         end
+        if (@boolean === 1)
+          render status: 200, json: {
+            message: "Successfully created "+@type +"."
+          }.to_json
+        else
+          render status: 400, json: {
+            message: "Submission failed."
+          }.to_json
+        end
+
         
       end
       

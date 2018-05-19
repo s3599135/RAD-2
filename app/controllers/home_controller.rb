@@ -33,11 +33,17 @@ class HomeController < ApplicationController
   end
   
   def feed
-    @users = User.all
+    # the id of news selected from Home
     @id = params['id']
-    @news = News.all
-    @comments = Comment.all
-    @items = Item.all
+    # get item with the id of the news selected 
+    @news = Item.find(@id)
+     # get user who submitted news 
+    @user = User.find(@news.user_id)
+    # get items in order from latest
+    @items = Item.all.order("created_at DESC")
+    # comments for that particuler news in descending order
+    @comments = Item.where(:item_type => "comment", :news_id => @id).order("created_at DESC")
+    # number of comments on that particuler news
     @count = Item.select(:id).where(:news_id => @id).count
     render('item')
   end

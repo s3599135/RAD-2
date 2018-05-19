@@ -4,7 +4,8 @@ class CommentController < ApplicationController
     end
     
     def index
-        @items = Item.all
+        @users = User.all
+        @comments = Item.all.where(:item_type => "comment").order("created_at DESC")
     end
     
     def create  
