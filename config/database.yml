@@ -24,8 +24,8 @@ default: &default
 development:
     <<: *default
     database: postgres
-    user: postgres
-    password: 123456
+    user: ubuntu
+    password: password
     
 production:
   adapter: postgresql
