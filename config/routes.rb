@@ -100,12 +100,11 @@ Rails.application.routes.draw do
 
   #   end
   # end
-  namespace :api, defaults: {format: :json} do
-    namespace :v0 do
+  namespace :v0, defaults: {format: :json} do
       resources :item
       post 'item/create' => 'item#create'
-    end
   end
+
   # namespace :api, defaults: {format: :json} do
   #   namespace :v0 do
   #     resources :test

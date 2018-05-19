@@ -1,4 +1,3 @@
-module Api
   module V0
     class ItemController < ApplicationController
       protect_from_forgery with: :null_session
@@ -79,4 +78,3 @@ module Api
       end
     end
   end
-end
