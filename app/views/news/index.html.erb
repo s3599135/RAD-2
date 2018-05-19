@@ -1,0 +1,18 @@
+<% content_for :title, "Create a news" %>
+<div class="submit-form">
+  <!-- get news data from form and post to /news-->
+    <form action="/items" method="POST">
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+              <input type="hidden" name="item[item_type]" value="news">
+              <!--<input type="content" name="item[content]" placeholder="content">-->
+              <textarea rows="4" cols="50" name="item[content]" placeholder="required" ></textarea>
+              <br>
+              <br>
+              news source (optional):   <input type="source" name="item[source]" placeholder="source">
+
+              <input type="hidden" name="item[user_id]" value= "<%= session[:user_id] %>">
+              <br>
+              <br>
+              <input type="submit" name="submit" class="submit">
+   </form>
+ </div>

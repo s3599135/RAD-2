@@ -1,0 +1,15 @@
+
+<table>
+  <tr>
+    <th>News</th>
+  </tr>
+  <%= @comments.each do |comment| %>
+    <tr>
+      
+      <td><%= comment.id %></td>
+      <td><%= comment.content %></td>
+      
+    </tr>
+    
+  <% end %>
+</table>

@@ -1,0 +1,20 @@
+ <h1><%= @message %></h1>
+ <p>From app/views/about/index.html.erb</p>
+ <p><%= @extra * @count %></p>
+ 
+ <div>
+  hello is about page 
+ </div>
+
+  <table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <%= @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+    </tr>
+  <% end %>
+</table>
+
+ 

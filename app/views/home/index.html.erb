@@ -1,0 +1,29 @@
+<% content_for :title, "Home Page #("+@pageNumber.to_s+")" %>
+   <!--<table>-->
+  <% if @news != nil %>
+    <h1>News</h1>
+    <% @news.each do |item| %>
+    <% if item.item_type === "news" %>
+    
+    <div>
+      <h2><%= item.content %></h2>
+      <p> by 
+          <% if @users != nil %>
+            <% @users.each do |user| %>
+              <% if(user.id.to_i == item.user_id.to_i)%>
+                <%= user.username %>
+              <% end %>
+            <% end %>
+          <% end %>
+          | <%= item.updated_at.in_time_zone("Melbourne") %> | 
+          
+        <% count = Item.select(:id).where(:news_id => item.id).count %>
+        <%= link_to('comments ' + count.to_s , {:action =>"feed", :id => item.id}) %>
+      </p>
+    </div>
+    <% end %>
+    <% end %>
+  <% end %>
+  <!--</table>-->
+
+  <%= link_to('Next 8', {:action =>"page", :page => @pageNumber+1}) %>

@@ -1,0 +1,38 @@
+NEWS ID: <%= @id %><br
+<!-- loop through news articles -->
+<% @items.each do |news|%>
+  <!-- Find the news post the user selected-->
+  <% if news.id.to_s === @id.to_s %>
+  <!-- Link to the story with the story's name -->
+  <a href=<%= news.source %> class="link"><%= news.content %></a>
+  <a href=<%= news.source %>>
+    (=<%= news.source %>)
+  </a>
+  
+  <% end %>
+<% end %>
+
+    <form action="/items" method="POST">
+        <!-- po-->
+        <input type="hidden" name="item[news_id]" value="<%= @id %>">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+        <input type="hidden" name="item[item_type]" value="comment">
+        <textarea name="item[content]" rows="6" cols="60" placeholder="New Comment...."></textarea>
+        <br>
+        <br>
+        <input type="submit" name="submit" class="submit">
+
+    </form>
+    
+    <table>
+
+      <% @items.each do |item| %>
+       <% if item.item_type === "comment" && item.news_id.to_s === @id.to_s %>
+        <tr>
+          <td><%= item.content %></td>
+        </tr>
+      <% end %>
+    
+      <% end %>
+    
+</table>

@@ -1,0 +1,32 @@
+<% content_for :title, "Create a news" %>
+
+<!-- get news data from form and post to /news-->
+<h1>Submit news</h1>
+ <form action="/items" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <input type="hidden" name="item[item_type]" value="news">
+            <input type="content" name="item[content]" placeholder="content">
+            <input type="source" name="item[source]" placeholder="source">
+            <input type="submit" name="submit" class="submit">
+ </form>
+ 
+ <!--<table>-->
+ <!-- <tr>-->
+ <!--   <th>News</th>-->
+ <!-- </tr>-->
+  <% if @items != nil %>
+    <h1>News</h1>
+    <% @items.each do |item| %>
+    <% if item.item_type === "news" %>
+    
+    <div>
+      <h2><%= item.content %></h2>
+      <p> <%= item.user_id %> | <%= item.updated_at.to_time.to_i %> | 
+        <% count = Item.select(:id).where(:news_id => item.id).count %>
+        <%= link_to('comments ' + count.to_s , {:action =>"feed", :id => item.id}) %>
+      </p>
+    </div>
+    <% end %>
+    <% end %>
+  <% end %>
+  <!--</table>-->

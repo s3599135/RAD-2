@@ -1,0 +1,83 @@
+NEWS ID TEST: <%= @id %><br
+<!-- loop through news articles -->
+<% @news.each do |news|%>
+  <!-- Find the news post the user selected-->
+  <% if news.id.to_s === @id.to_s %>
+  <!-- Link to the story with the story's name -->
+  <a href=<%= news.source %> class="link"><%= news.content %></a>
+  <a href=<%= news.source %>>
+    (=<%= news.source %>)
+  </a>
+  
+  <% end %>
+<% end %>
+
+
+<!-- get comment data from form and post to /comments-->
+<form action="/comments" id="commentform" method="POST">
+            <!-- po-->
+            <input type="hidden" name="new_id" value="<%= @id %>">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <textarea name="comment[content]" rows="6" cols="60" placeholder="New Comment...."></textarea>
+            <br>
+            <br>
+            <input type="submit" name="submit" class="submit">
+
+</form>
+
+<table id="table-of-comments">
+    <!-- For every comment make a new comment table with the field comment details and comment content -->
+    <tr>Comments </tr>
+    <% @comments.each do |comment|%>
+    
+   
+     <% if comment.news_id.to_s === @id.to_s %>
+   
+    <tr>
+      <!-- Comment object -->
+      <table id="comment">
+        
+        <!-- User and time of comment -->
+        <!--<tr id="comment-details">-->
+        <!--  <td>User1 2 hours ago</td>-->
+        <!--</tr>-->
+        
+         Comment 
+        <tr id="comment-content">
+          <td><%= comment.content %></td>
+        </tr>
+        
+      </table>
+    </tr>
+    <% end %>
+    
+    <% end %>
+    
+</table>
+
+<!--<table>-->
+  <% if @comments != nil %>
+    <h1>News</h1>
+    <% @comments.each do |item| %>
+      <% if item.item_type === "comments" %>
+        <% if comment.news_id.to_s === @id.to_s %>
+        <div>
+          <h2><%= item.content %></h2>
+          <p> by 
+          <% if @users != nil %>
+            <% @users.each do |user| %>
+              <% if(user.id.to_i == item.user_id.to_i)%>
+                <%= user.username%>
+              <% end %>
+            <% end %>
+          <% end %>
+          | <%= item.updated_at.to_time.to_i %> | 
+            <% count = Item.select(:id).where(:news_id => item.id).count %>
+            <%= link_to('comments ' + count.to_s , {:action =>"feed", :id => item.id}) %>
+          </p>
+        </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <!--</table>-->

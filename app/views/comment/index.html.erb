@@ -1,0 +1,40 @@
+ <!--<table>-->
+ <!-- <tr>-->
+ <!--   <th>News</th>-->
+ <!-- </tr>-->
+  <% if @items != nil %>
+    <h1>Comments</h1>
+    <% @items.each do |item| %>
+     <% if item.item_type === "comment" %>
+     
+     <div>
+       <h3><%= item.content %></h3>
+       <p> 
+       by 
+          <% if @users != nil %>
+            <% @users.each do |user| %>
+              <% if(user.id.to_i == item.user_id.to_i)%>
+                <%= user.username%>
+              <% end %>
+            <% end %>
+          <% end %> | 
+        on <%= item.created_at %> 
+       <%  parent = Item.select(:id).where(:id => item.news_id).pluck(:content).to_s %>
+       <%  parent = parent.delete "[\"" %>
+       <%  parent = parent.delete "\"]" %>
+       <%  
+        if(parent.size > 30) 
+         over30 = true 
+        end 
+       %>
+       <%= parent[0,30] %>
+       <% if(over30 == true)%>
+        ...
+       <% end %>
+       
+       </p>
+     </div>
+     <% end %>
+    <% end %>
+  <% end %>
+  <!--</table>-->

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Login & Registration</title>
+    </head>
+    <body>
+        <h1>Login</h1>
+        
+        <form action="/sessions" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <input type="name" name="login[name]" placeholder="username">
+            <input type="password" name="login[password]" placeholder="password">
+            <input type="submit" name="submit" class="submit">
+        </form>
+        
+        <h2>Registration</h2>
+        <form action="/user" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <input type="name" name="user[username]" placeholder="username">
+            <input type="password" name="user[password]" placeholder="password">
+            <input type="submit" name="submit" class="submit">
+        </form>
+        
+    </body>
+</html>

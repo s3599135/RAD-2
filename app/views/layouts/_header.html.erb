@@ -1,0 +1,18 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container"> 
+  <%= link_to "RMIT News", '#', id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home",   '/' %></li>
+        <li><%= link_to "Comments",   '/comments' %></li>
+        <li><%= link_to "Submit", '/submit' %></li>
+        
+        <% if(session.key?("user_id")) %>
+          <li><%= link_to "Log out", '/logOut' %></li>
+        <% else %>
+          <li><%= link_to "Login", '/login' %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</header>
