@@ -7,7 +7,7 @@ gem 'bootstrap-sass', '3.3.7'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 # use gp as database
-gem 'gp'
+gem 'pg', '~> 0.20'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -50,6 +50,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.20'
   
 end
