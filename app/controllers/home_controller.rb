@@ -31,6 +31,8 @@ class HomeController < ApplicationController
     @news = Item.find(@id)
      # get user who submitted news 
     @user = User.find(@news.user_id)
+    # all users
+    @users = User.all
     # get items in order from latest
     @items = Item.all.order("created_at DESC")
     # comments for that particuler news in descending order
