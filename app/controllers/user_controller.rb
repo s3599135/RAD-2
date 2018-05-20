@@ -3,6 +3,7 @@ class UserController < ApplicationController
    def index
        
    end
+   
    def login
     # user = User.find_by(user_params)
     # if user and user.authenticate[params[:password]]
@@ -10,6 +11,7 @@ class UserController < ApplicationController
     #     redirect_to '/dash'
     # end
    end
+   
    def destroy
     session[:user_id] = nil
     redirect_to '/'

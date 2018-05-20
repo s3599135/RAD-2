@@ -15,7 +15,7 @@ class NewsController < ApplicationController
   end
   
   # create new news object 
-  
+  # unused function
   def create
     # @news = params[:source] 
     # @news = params[:content] 

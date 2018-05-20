@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/' => 'home#index'
   # changes the page news for home page
   get '/page' => 'home#page'
+  # show about page 
   get '/about' => 'home#about'
   # +++++++++++++++++++++++++++++++++++++++
   # +++++++++++++++++++++++++++++++++++++++

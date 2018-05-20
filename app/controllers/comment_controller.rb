@@ -8,6 +8,7 @@ class CommentController < ApplicationController
         @comments = Item.all.where(:item_type => "comment").order("created_at DESC")
     end
     
+    # unused create function 
     def create  
         
         @new = News.find(params[:new_id])

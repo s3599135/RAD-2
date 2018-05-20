@@ -13,9 +13,11 @@ class HomeController < ApplicationController
     @news = Item.where(item_type:'news').order("created_at DESC").limit(8).offset(0 + ((@pageNumber-1)*8))
     
   end
+  
   def about
     
   end
+  
   def page
     @users = User.all
     @pageNumber = params[:page]
