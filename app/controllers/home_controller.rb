@@ -22,17 +22,7 @@ class HomeController < ApplicationController
     render ('index')
   end
 
-  
   def item
-    @users = User.all
-    @id = params['id']
-    @news = News.all
-    @comments = Comment.all
-    @count = Item.select(:id).where(:news_id => @id).count
-    render('comment')
-  end
-  
-  def feed
     # the id of news selected from Home
     @id = params['id']
     # get item with the id of the news selected 

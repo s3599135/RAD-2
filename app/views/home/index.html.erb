@@ -21,7 +21,7 @@
           | <%= item.updated_at.in_time_zone("Melbourne") %> | 
           
         <% count = Item.select(:id).where(:news_id => item.id).count %>
-        <%= link_to('comments ' + count.to_s , {:action =>"feed", :id => item.id}) %>
+        <%= link_to('comments ' + count.to_s , {:action =>"item", :id => item.id}) %>
       </p>
     </div>
     <% end %>

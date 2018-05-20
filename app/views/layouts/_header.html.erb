@@ -1,6 +1,10 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container"> 
-  <%= link_to "RMIT News", '#', id: "logo" %>
+  <div style="margin-left: 20px;margin-right: 20px"> 
+  <div class="logo">
+    <%= link_to image_tag("logo1.png", alt: "logo") ,'/', class: 'navbar-brand', style: "height:auto"%>
+    <%= link_to "RMIT News",'/', class: 'navbar-brand', id: "logo", style: "height:100%, font-size: 2em" %>
+  </div>
+  
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home",   '/' %></li>

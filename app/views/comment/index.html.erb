@@ -5,8 +5,10 @@
  <!-- </tr>-->
 <% if @comments != nil %>
  <h1>Comments</h1>
- <% @comments.each do |comment| %>
+ <% @tencomments = @comments[0,10] %>
+ <% @tencomments.each do |comment| %>
   <div>
+   <hr size = "10">
    <p> by 
     <% if @users != nil %>
      <% @users.each do |user| %>

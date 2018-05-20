@@ -17,23 +17,26 @@ Rails.application.routes.draw do
   # +++++++++++++++++++++++++++++++++++++++
   # +++++++++++++++++++++++++++++++++++++++
   # get '/items' => 'items#index'
+  # for creating news and comments
   post '/items' => 'items#create'
   # +++++++++++++++++++++++++++++++++++++++
   # +++++++++++++++++++++++++++++++++++++++
-  get '/item' => 'home#feed'
+  # to show comments for news clicked from home page
+  get '/item' => 'home#item'
   # +++++++++++++++++++++++++++++++++++++++
   # +++++++++++++++++++++++++++++++++++++++
- 
-  # get '/'=>'items#index'
+  # after creating item redirect to home page 
   post '/' => 'items#create'
   
-  get '/items' => 'home#item'
-  
+  # get '/items' => 'items#item'
+  # 
   post '/comments' => 'comment#create'
   # get '/comments' => 'about#comment'
+  # newcomments route to view all comments 
   get '/newcomments' => 'comment#index'
   
   # get 'submit'=>'news#index'
+  # submit new news item
   get 'submit' => 'news#index'
   # get 'submit/create' => 'news#create'
   # post 'submit/create' => 'news#create'

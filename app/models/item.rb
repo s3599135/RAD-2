@@ -1,5 +1,7 @@
 class Item < ActiveRecord::Base
     
+  belongs_to :user
+  
   validates :content,
     presence: true,
     length: { minimum: 5, maximum: 1000 },
@@ -10,5 +12,8 @@ class Item < ActiveRecord::Base
     length: { minimum: 10, maximum: 200 },
     if: ->{ item_type === 'news' }
         
-    belongs_to :user
+  # validates :source, 
+  #   presence: false,
+  #   url: true
+  
 end
