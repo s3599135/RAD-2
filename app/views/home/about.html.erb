@@ -1,20 +1,30 @@
- <h1><%= @message %></h1>
- <p>From app/views/about/index.html.erb</p>
- <p><%= @extra * @count %></p>
- 
- <div>
-  hello is about page 
- </div>
+<% content_for :title, "About"%>
+
+<h1>Welcome to about page</h1>
 
   <table>
   <tr>
     <th>Name</th>
+    <th>Student Number</th>
   </tr>
-  <%= @users.each do |user| %>
-    <tr>
-      <td><%= user.name %></td>
-    </tr>
-  <% end %>
+  <tr>
+   <td>Hassen Mender </td>
+   <td> - s3599135</td>
+  </tr>
+  <tr>
+   <td>Jarry Chen </td>
+   <td>- s3600396</td>
+  </tr>
+  
+  <div>
+   <a href="https://rad-2-clone.herokuapp.com"> Heroku URL</a>
+  </div>
+  <div>
+   <a href="https://bitbucket.org/s3599135/rad18_assign_2_group_s3600396_s3599135"> BitBucket URL</a>
+  </div>
+  <div>
+   <h2>Group memebrs</h2>
+  </div>
 </table>
 
  

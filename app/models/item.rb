@@ -12,8 +12,11 @@ class Item < ActiveRecord::Base
     length: { minimum: 10, maximum: 200 },
     if: ->{ item_type === 'news' }
         
-  # validates :source, 
-  #   presence: false,
-  #   url: true
+  validates :source,
+    presence: false
+    
+  validates :source, 
+    format: { with: URI.regexp }, if: Proc.new { |a| a.source.present? }
+    
   
 end
